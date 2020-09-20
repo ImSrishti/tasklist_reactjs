@@ -1,8 +1,9 @@
 import React, { useState } from 'react'
 import { useParams } from 'react-router-dom'
-import { addTask,completeTask } from '../../redux/actions'
+import { addTask, completeTask } from '../../redux/actions'
 import { connect } from 'react-redux'
 import { gettasks } from '../../redux/selectors'
+import './Tasks.css'
 
 function Tasks(props) {
 
@@ -17,29 +18,30 @@ function Tasks(props) {
     }
 
     const saveTasks = () => {
-        const temp = { "name": id, task: {completed:false,taskcontent:task.taskcontent} }
+        const temp = { "name": id, task: { completed: false, taskcontent: task.taskcontent } }
         props.addTask(temp)
     }
     const completeTask = (t) => {
-        const temp = { "name": id, task: t}
+        const temp = { "name": id, task: t }
         props.completeTask(temp)
     }
     return (
-        <div>
-            <input onChange={(e) => handletask(e.target.value)} />
-            <button onClick={saveTasks}>Add tasks</button>
-
-            {props.topicList[id].tasklist.map((task, index) => (
-              task.completed? null :
-              <div>Not Completed:{task.taskcontent}
-                <button onClick={()=>completeTask(task.taskcontent)}>Done</button>
+        <div className="tasks">
+            <div className="addTasks">
+            <input className="task_input_box" onChange={(e) => handletask(e.target.value)} />
+            <button className="button" onClick={saveTasks}>Add tasks</button>
             </div>
+            {props.topicList[id].tasklist.map((task, index) => (
+                task.completed ? null :
+                    <div key={index} className="task_incompleted">{task.taskcontent}
+                        <button className="button" onClick={() => completeTask(task.taskcontent)}>Done</button>
+                    </div>
             ))}
             {props.topicList[id].tasklist.map((task, index) => (
-              task.completed? 
-                <div>Completed:{task.taskcontent}
-                </div>
-                :null
+                task.completed ?
+                    <div key={index} className="task_completed">{task.taskcontent}
+                    </div>
+                    : null
             ))}
 
         </div>
@@ -50,4 +52,4 @@ const mapStateToProps = (state) => {
     return { topicList }
 }
 
-export default connect(mapStateToProps, { addTask ,completeTask})(Tasks)
+export default connect(mapStateToProps, { addTask, completeTask })(Tasks)

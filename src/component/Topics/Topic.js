@@ -2,14 +2,14 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import {gettopics} from '../../redux/selectors'
-
+import './Topic.css'
 function Topic(props) {
     return (
-        <div>
+        <div className="topic">
             
           { props.topicList.map((topic,index)=>(
               <Link to={`/home/tasks/${topic}`}  key={index}>
-                  <div style={{"border":"1px solid black"}}>{topic}</div>
+                  <button className="topic_button">{topic}</button>
                </Link>
           ))
         }

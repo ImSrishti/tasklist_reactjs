@@ -2,11 +2,12 @@ import React from 'react'
 import { Link, Switch } from 'react-router-dom'
 import RouteWithSubRoutes from '../../routerconfig/routewithsubroutes'
 import Topic from './Topic'
-
+import './Topics.css'
 function Topics({routes}) {
     return (
-        <div>
-            <Link to="/addtopic"><button>Add Topic</button></Link>
+        <div className="topics">
+            <Link to="/addtopic"><div className="addtopic">Add Topic</div></Link>
+            
             <Topic />
 
             <Switch>

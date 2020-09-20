@@ -1,0 +1,13 @@
+.topics{
+}
+.addtopic{
+    border: 1px solid gray;
+    background-color: rgb(77, 76, 76);
+    color: white;
+    padding: 3px;
+    border-radius: 5px;
+    text-decoration: none;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+}
