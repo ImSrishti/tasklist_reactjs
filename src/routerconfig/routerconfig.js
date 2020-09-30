@@ -1,6 +1,7 @@
 import React from 'react'
 import {
     BrowserRouter as Router,
+    Redirect,
     Switch
 } from "react-router-dom";
 
@@ -31,8 +32,9 @@ export default function RouterConfig() {
 
     return (
         <div>
-
+               
             <Router>
+            <Redirect to="/home"></Redirect>
                 <Switch>
                     {routes.map((route, i) => (
                         <RouteWithSubRoutes key={i} {...route} />
